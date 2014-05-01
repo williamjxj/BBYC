@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-framework="backbonejs">
+<head>
+    <meta charset="utf-8">
+    <title>BBYC - MVC ASSESMENT - William Jiang</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div class="container" id="container">
+    <div class="row">
+        <div class="col-md-2" id="nav-show-top"></div>
+        <div class="col-md-10" id="main-show-list"></div>
+    </div>
+</div>
+
+<script type="text/template" id="show-top">
+    <h4><a href="javascript:location.href=location.href.replace(/#.*$/,'');"><%= title.brand %></a></h4>- <span class="alert-warning bg-warning"> <%= title.name %></span>
+    <ul class="list-group">
+        <% _.each(cates, function(category) { %>
+        <li class="list-group-item">
+            <a href="#cateId/<%= category.id %>" class="category"> <%= category.name %> </a>
+        </li>
+        <% }); %>
+    </ul>
+</script>
+
+<script type="text/template" id="show-list">
+    <div class="row">
+
+        <% _.each(products, function(product, index) { %>
+
+        <div class="col-sm-4 col-md-3">
+            <div class="thumbnail">
+                <a href="#sku/<%= product.sku %>" class="product"><img src="http://www.bestbuy.ca/<%= product.thumbnailImage %>" class="img img-rounded img-thumbnail" alt="<%= product.name %> - sku is '<%= product.sku %>'"></a>
+                <div class="caption">
+                    <summary><a href="#sku/<%= product.sku %>" class="product"><%= product.name %></a> - $<%= product.salePrice %></summary>
+                    <p> <%= product.shortDescription%></p>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+
+    </div>
+</script>
+
+
+<script type="text/template" id="show_detail">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="thumbnail" style="height:400px;">
+                <img src="http://www.bestbuy.ca/<%= detail.thumbnailImage %>" class="img img-rounded img-thumbnail" alt="<%= detail.name %> - sku is '<%= detail.sku %>'" />
+                <div class="caption" style="height:inherit;">
+                    <h4><%= detail.name %></h4>
+                    <span class="text-muted">Sku: <%= detail.sku %>,</span>
+                    <span class="text-warning">Regular Price: $<%= detail.regularPrice %>,</span>
+                    <span class="text-primary">Sale Price: $<%= detail.salePrice %>,</span>
+                    <span class="text-success">brandName: <%= detail.brandName %>,</span>
+                    <span class="text-info">Maker: <%= detail.make %>,</span>
+                    <span class="text-danger">ProductType: <%= detail.productType %></span>
+                    <p style="height:inherit;font-size: 11px; padding-top:16px;"> <%= detail.shortDescription%></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title bg-primary" style="text-align: center">Show SKU Detail:</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- use CDN, not localize -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="js/models/bbyc_detail.js"></script>
+<script src="js/collections/bbycs_categories.js"></script>
+<script src="js/collections/bbycs_products.js"></script>
+<script src="js/views/categories-view.js"></script>
+<script src="js/views/products-view.js"></script>
+<script src="js/views/detail-view.js"></script>
+<script src="js/routers/router.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

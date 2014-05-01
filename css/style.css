@@ -1,0 +1,29 @@
+.img {
+    width: 150px;
+    height: 150px;
+    border: 0;
+}
+
+div.thumbnail {
+    height: 300px;
+    overflow: hidden;
+}
+
+div.thumbnail p {
+    text-overflow: ellipsis;
+    font-size: 10px;
+}
+
+div.thumbnail summary {
+    font-size: 12px;
+}
+/*
+.thumbnails > li {
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.thumbnails > li:nth-child(3n+4) {
+    clear: both;
+}
+*/
